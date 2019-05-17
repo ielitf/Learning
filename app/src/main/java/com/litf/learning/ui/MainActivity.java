@@ -1,36 +1,56 @@
 package com.litf.learning.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-
 import com.litf.learning.R;
-import com.litf.vrlibrary.VrPlayerManager;
+import com.litf.learning.ui.high.HighFragment;
+import com.litf.learning.ui.main.MainFragment;
+import com.litf.learning.ui.me.MeFragment;
+import com.litf.learning.ui.middle.MiddleFragment;
 
 public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
-    private RadioButton radioButton1;
     private ItemFragment itemFragment;
     private FragmentManager fragmentManager;
+    private Fragment mFragment;
+    private MainFragment mainFragment = new MainFragment();
+    private MiddleFragment middleFragment = new MiddleFragment();
+    private HighFragment highFragment = new HighFragment();
+    private MeFragment meFragment = new MeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        radioButton1.setChecked(true);
         fragmentManager = getSupportFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        mFragment = mainFragment;
+        transaction.add(R.id.layout_content, mFragment).commit();
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                        showFragment(transaction,checkedId);
-
+                switch (checkedId) {
+                    case R.id.menu_base:
+                        switchFragment(mainFragment);
+                        break;
+                    case R.id.menu_high:
+                        switchFragment(middleFragment);
+                        break;
+                    case R.id.menu_special:
+                        switchFragment(highFragment);
+                        break;
+                    case R.id.menu_mine:
+                        switchFragment(meFragment);
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 
@@ -39,9 +59,17 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         itemFragment = new ItemFragment();
         radioGroup = findViewById(R.id.menu_rGroup);
-        radioButton1 = findViewById(R.id.menu_base);
     }
-    private void showFragment(FragmentTransaction transaction, int checkedId) {
 
+    private void switchFragment(Fragment fragment) {
+        if (mFragment != fragment) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            if (!fragment.isAdded()) {
+                transaction.hide(mFragment).add(R.id.layout_content, fragment).commit();
+            } else {
+                transaction.hide(mFragment);
+            }
+            mFragment = fragment;
+        }
     }
 }

@@ -30,7 +30,8 @@
             android:drawableTop="@drawable/menu_base_icon"
             android:gravity="center_horizontal"
             android:text="@string/base"
-            android:textColor="@drawable/menu_text_color" />
+            android:textColor="@drawable/menu_text_color"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/menu_high"
