@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="text_navigation">10sp</dimen>//导航字体
+    <dimen name="text_content">12sp</dimen>//内容字体
+    <dimen name="text_content_big">14sp</dimen>内容字体-大
+    <dimen name="text_title_bar">16sp</dimen>标题字体
+
     <dimen name="text_margin">16dp</dimen>
     <dimen name="space_8">8sp</dimen>
     <dimen name="space_10">10sp</dimen>

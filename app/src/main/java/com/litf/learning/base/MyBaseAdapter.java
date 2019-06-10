@@ -5,122 +5,62 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-/**
- * BaseAdapter
- */
+public abstract class MyBaseAdapter<E> extends BaseAdapter {
 
-public abstract class MyBaseAdapter<T> extends BaseAdapter {
-    Context mContext;
-    List<T> mList;
+	protected List<E> data;
+	protected Context context;
 
-    public MyBaseAdapter() {
-        this.mList = new ArrayList();
-    }
+	public MyBaseAdapter(List<E> data, Context context) {
+		super();
+		this.data = data;
+		this.context = context;
+	}
 
-    public MyBaseAdapter(Context context) {
-        this.mContext = context;
-        this.mList = new ArrayList();
-    }
+	@Override
+	public int getCount() {
+		if (data == null)
+			return 0;
+		else
+			return data.size();
+	}
 
-    public MyBaseAdapter(Context context, Collection<T> collection) {
-        this(context);
-        mList.addAll(collection);
-    }
+	@Override
+	public E getItem(int position) {
+		if (data == null || data.size() == 0)
+			return null;
+		else
+			return data.get(position);
+	}
 
-    protected <V extends View> V findViewById(View view, int id) {
-        return (V) view.findViewById(id);
-    }
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
 
-    public int findPosition(T message) {
-        int index = this.getCount();
-        int position = -1;
+	public List<E> getData() {
+		return data;
+	}
 
-        while (index-- > 0) {
-            if (message.equals(this.getItem(index))) {
-                position = index;
-                break;
-            }
-        }
+	public void setData(List<E> data) {
+		this.data = data;
+	}
 
-        return position;
-    }
+	@Override
+	public abstract View getView(int position, View convertView,
+                                 ViewGroup parent);
 
-    public int findPosition(long id) {
-        int index = this.getCount();
-        int position = -1;
-
-        while (index-- > 0) {
-            if (this.getItemId(index) == id) {
-                position = index;
-                break;
-            }
-        }
-
-        return position;
-    }
-
-    public void addCollection(Collection<T> collection) {
-        this.mList.addAll(collection);
-    }
-
-    public void addCollection(T... collection) {
-        if (collection == null)
-            return;
-
-        for (T item : collection) {
-            mList.add(item);
-        }
-    }
-
-    public void add(T t) {
-        this.mList.add(t);
-    }
-
-    public void add(T t, int position) {
-        this.mList.add(position, t);
-    }
-
-    public void remove(int position) {
-        this.mList.remove(position);
-    }
-
-    public void removeAll() {
-        this.mList.clear();
-    }
-
-    public void clear() {
-        this.mList.clear();
-    }
-
-    public int getCount() {
-        return this.mList == null ? 0 : this.mList.size();
-    }
-
-    public T getItem(int position) {
-        return this.mList == null ? null : (position >= this.mList.size() ? null : this.mList.get(position));
-    }
-
-    public List<T> getList() {
-        return this.mList;
-    }
-
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
-        if (convertView != null) {
-            view = convertView;
-        } else {
-            view = this.newView(this.mContext, position, parent);
-        }
-
-        this.bindView(this.mContext, view, position, this.getItem(position));
-        return view;
-    }
-
-    protected abstract View newView(Context context, int position, ViewGroup parentView);
-
-    protected abstract void bindView(Context context, View view, int position, T model);
+	/*@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
+		try {
+			if (data == null || data.size() <= 0) {
+				((BaseActivity) context).onListViewDataEmpty();
+			} else {
+				((BaseActivity) context).onListViewDataNotEmpty();
+			}
+		} catch (Exception e) {
+		}
+	}*/
 }

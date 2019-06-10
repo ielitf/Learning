@@ -1,1 +1,1 @@
-include ':app', ':vrlibrary'
+include ':app', ':vrlibrary', ':Vitamio'

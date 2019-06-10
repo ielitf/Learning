@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.litf.learning.R;
-import com.litf.learning.base.MyBaseAdapter;
+import com.litf.learning.base.MyBaseAdapter2222;
 import com.litf.learning.bean.VideoItem;
 
 import java.util.List;
 
-public class VrVideoAdapter extends MyBaseAdapter<VideoItem> {
+public class VrVideoAdapter extends MyBaseAdapter2222<VideoItem> {
     private LayoutInflater inflater;
     private Context context;
     public VrVideoAdapter(Context context, List<VideoItem> mData) {

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/text_nav"
+    >
+
+    <LinearLayout
+        android:id="@+id/my_pop_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/top_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="未知标题"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_title_bar" />
+
+        <ImageView
+            android:id="@+id/poping_image"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/down"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/top_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/base_back_icon"
+            android:gravity="center_vertical" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top_publish_layout"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/top_publish_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="完成"
+            android:padding="@dimen/space_10"
+            android:textSize="@dimen/text_title_bar"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

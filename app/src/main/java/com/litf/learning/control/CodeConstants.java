@@ -11,4 +11,8 @@ public class CodeConstants {
     public static final String MUSIC_URL = "musicUrl";
     public static final String VIDEO_URL = "videoUrl";
 
+    public static  String  HEADERS ="";
+    public static  String TOKEN ="";
+    public static  String MAIN_PAGE_CACHED="main_page_cached";
+
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_controller_bar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusable="false">
+
+    <io.vov.vitamio.widget.MyScrollView2
+        android:id="@+id/mygesture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="46dp"
+        android:layout_toLeftOf="@+id/sound_layout" />
+
+    <LinearLayout
+        android:id="@+id/sound_layout"
+        android:layout_width="50dip"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sound_text"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:text="100"
+            android:textSize="16sp" />
+        <!--<SeekBar-->
+        <!--android:id="@+id/seekbar_volume"-->
+        <!--android:layout_width="90dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginLeft="3dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:focusable="false"-->
+        <!--android:focusableInTouchMode="false"-->
+        <!--android:progressDrawable="@drawable/seekbar_volume_style_drawable"-->
+        <!--android:thumb="@null" />-->
+
+        <io.vov.vitamio.verticalseekbar.VerticalSeekBarWrapper
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:clickable="false"
+            android:focusable="false">
+
+            <io.vov.vitamio.verticalseekbar.VerticalSeekBar
+                android:id="@+id/seekbar_volume"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:seekBarRotation="CW270" />
+            <!-- Rotation: CW90 or CW270 -->
+        </io.vov.vitamio.verticalseekbar.VerticalSeekBarWrapper>
+
+        <ImageView
+            android:id="@+id/iv_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_volume" />
+    </LinearLayout>
+
+</RelativeLayout>
