@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.litf.learning.utils.SharedPreferenceManager;
+import com.litf.learning.utils.SharedPreferencesManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.MemoryCookieStore;
@@ -87,7 +87,7 @@ public class MyApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		application = this;
-		SharedPreferenceManager.init(getApplicationContext(), SHARED_PREFERENCE_NAME);
+		SharedPreferencesManager.init(getApplicationContext(), SHARED_PREFERENCE_NAME);
 		CodeConstants.HEADERS = getCustId();
 		//使用OkGo的拦截器
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();

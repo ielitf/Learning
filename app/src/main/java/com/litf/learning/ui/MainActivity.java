@@ -14,7 +14,6 @@ import com.litf.learning.ui.middle.MiddleFragment;
 
 public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
-    private ItemFragment itemFragment;
     private FragmentManager fragmentManager;
     private Fragment mFragment;
     private MainFragment mainFragment = new MainFragment();
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        itemFragment = new ItemFragment();
         radioGroup = findViewById(R.id.menu_rGroup);
     }
 
@@ -67,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             if (!fragment.isAdded()) {
                 transaction.hide(mFragment).add(R.id.layout_content, fragment).commit();
             } else {
-                transaction.hide(mFragment);
+                transaction.hide(mFragment).show(fragment).commit();
             }
             mFragment = fragment;
         }

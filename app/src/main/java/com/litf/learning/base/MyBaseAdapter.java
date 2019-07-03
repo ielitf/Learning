@@ -12,10 +12,10 @@ public abstract class MyBaseAdapter<E> extends BaseAdapter {
 	protected List<E> data;
 	protected Context context;
 
-	public MyBaseAdapter(List<E> data, Context context) {
+	public MyBaseAdapter(Context context,List<E> data) {
 		super();
-		this.data = data;
 		this.context = context;
+		this.data = data;
 	}
 
 	@Override

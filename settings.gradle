@@ -1,1 +1,1 @@
-include ':app', ':vrlibrary', ':Vitamio'
+include ':app', ':vrlibrary', ':Vitamio', ':XRefreshView'

@@ -15,4 +15,8 @@ public class CodeConstants {
     public static  String TOKEN ="";
     public static  String MAIN_PAGE_CACHED="main_page_cached";
 
+    public static String CLIENT_ID = "_client_id_zp_";
+    public static String  ZP_NAME = "_zpname_";
+    public static String  ZP_SIGN = "_zpsign_";
+
 }
