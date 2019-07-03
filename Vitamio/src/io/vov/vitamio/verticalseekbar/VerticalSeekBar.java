@@ -290,7 +290,7 @@ public class VerticalSeekBar extends SeekBar {
         }
     }
 
-    private synchronized void setProgress(int progress, boolean fromUser) {
+    public synchronized void setProgress(int progress, boolean fromUser) {
         if (mMethodSetProgress == null) {
             try {
                 Method m;

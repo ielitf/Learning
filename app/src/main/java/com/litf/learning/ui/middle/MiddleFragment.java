@@ -51,20 +51,13 @@ public class MiddleFragment extends Fragment {
         xRefreshView.setAutoLoadMore(false);// 设置时候可以自动刷新
         // 设置上次刷新的时间
         xRefreshView.restoreLastRefreshTime(lastRefreshTime);
-        xRefreshView.setOnBottomLoadMoreTime(new OnBottomLoadMoreTime() {
-			@Override
-			public boolean isBottom() {
-				return true;
-			}
-		});
-
-
         xRefreshView.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener(){
             @Override
-            public void onRefresh(boolean isPullDown) {
+            public void onRefresh(final boolean isPullDown) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        Log.w("=====下拉", "isPullDown"+isPullDown);
                         xRefreshView.stopRefresh();
                         lastRefreshTime = xRefreshView.getLastRefreshTime();
                     }
@@ -72,11 +65,12 @@ public class MiddleFragment extends Fragment {
             }
 
             @Override
-            public void onLoadMore(boolean isSilence) {
+            public void onLoadMore(final boolean isSilence) {
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
+                        Log.w("=====上拉", "isSilence"+isSilence);
                         xRefreshView.stopLoadMore();
                     }
                 }, 2000);
@@ -84,28 +78,31 @@ public class MiddleFragment extends Fragment {
 
             @Override
             public void onRelease(float direction) {
-                super.onRelease(direction);
+
                 if (direction > 0) {
-                    toast("下拉");
+                    Log.w("=====下拉", "下拉");
+//                    toast("下拉");
                 } else {
-                    toast("上拉");
+                    Log.w("=====上拉", "上拉");
+//                    toast("上拉");
                 }
+                super.onRelease(direction);
             }
         });
 
-        xRefreshView.setOnAbsListViewScrollListener(new AbsListView.OnScrollListener() {
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                Log.e("=====StateChanged", "onScrollStateChanged");
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-                Log.e("=====onScroll", "onScroll");
-            }
-        });
+//        xRefreshView.setOnAbsListViewScrollListener(new AbsListView.OnScrollListener() {
+//
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//                Log.e("=====StateChanged", "onScrollStateChanged");
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem,
+//                                 int visibleItemCount, int totalItemCount) {
+//                Log.e("=====onScroll", "onScroll");
+//            }
+//        });
 
         return contentView;
     }
@@ -114,7 +111,7 @@ public class MiddleFragment extends Fragment {
         OkGo.<String>get(CodeConstants.URL_Query).cacheKey(CodeConstants.URL_Query).cacheMode(CacheMode.DEFAULT).execute(new StringCallback() {
             @Override
             public void onSuccess(com.lzy.okgo.model.Response<String> response) {
-//                Log.e("=====ssss", response.body());
+                Log.e("=====ssss", response.body());
                 if (response.code() == 200) {
                     try {
                         JSONObject obj = new JSONObject(response.body());
